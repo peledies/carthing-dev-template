@@ -1,6 +1,6 @@
 # Spotify AnyThing (For CarThing)
 
-![Spotify AnyThing Splash](https://github.com/peledies/carthing-dev-template/blob/main/webapp/images/appstart.png?raw=true)
+![Spotify AnyThing Splash](https://github.com/peledies/spotify-any-thing/blob/main/webapp/images/appstart.png?raw=true)
 
 
 This is meant to expedite the development process and was specifically written to be run on Mac. I dont see any reason why it wont run on linux as well. If you get it to run, please PM me with your harware specs and ill update the compatibility list.
@@ -30,7 +30,7 @@ pip3 install git+https://github.com/superna9999/pyamlboot
 > Make sure you have the `--recurse-submodules` at the end so you get the
 > dependant submodules.
 ```
-git clone git@github.com:peledies/carthing-dev-template.git --recurse-submodules
+git clone git@github.com:peledies/spotify-any-thing.git --recurse-submodules
 ```
 
 
