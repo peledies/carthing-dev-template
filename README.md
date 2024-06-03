@@ -4,7 +4,7 @@
 
 - Install prerequsites
 - Clone this repository
-- Download a new firmware
+- Prepare a new firmware
 - Install the new firmware
 - Modify the webapp
 - Profit
@@ -14,17 +14,18 @@
 brew install libusb
 ```
 
-### Clone this project
-```
-git clone git@github.com:peledies/carthing-dev-template.git --recurse-submodules
-```
-
 TODO: do this in a virtual environment
 ```
 pip3 install git+https://github.com/superna9999/pyamlboot
 ```
 
-## Get a Firmware
+## Clone this project
+```
+git clone git@github.com:peledies/carthing-dev-template.git --recurse-submodules
+```
+
+
+## Prepare a Firmware
 Use the provided helper script to get a new patched firmware.
 ```
 ./prepare_firmware.sh
@@ -36,16 +37,13 @@ Use the provided helper script to get a new patched firmware.
 - hold buttons 1 & 4
 - plug in CarThing
 
-```
-python3 superbird-tool/superbird_tool.py --find_device
-```
-
-```
-python3 superbird_tool.py --restore_device ../8.2.5_adb_enabled
-```
 > NOTE: This may fail several times but it will eventualy make it all the way
 > through the process. It took 4 tries for me. ProTip: dont let your computer
 > go to sleep durring this process
+```
+./prepare_device.sh
+```
+
 
 ## ADB
 ADB is included in this repository. The following commands work from the project root

@@ -37,21 +37,23 @@ if [ -z "$firmware" ]; then
   exit 1
 fi
 
+firmware_dir=${firmware%%.*}
+
 info_box "Downloading firmware"
 echo "  Downloading [${magenta}${firmware}${default}] firmware to [${magenta}${PWD}/firmware/${firmware}.tar.xz${default}]"
-# curl --create-dirs -O --output-dir ./firmware https://car-thing.s3.us-east-2.amazonaws.com/8.2.5_adb_enabled.tar.xz
+curl --create-dirs -O --output-dir ./firmware https://car-thing.s3.us-east-2.amazonaws.com/$firmware
 
 info_box "Creating firmware directory"
 echo "  Creating firmware directory [${magenta}${PWD}/firmware/${firmware}${default}]"
-# mkdir -p ./firmware/8.2.5_adb_enabled
+mkdir -p ./firmware/$firmware_dir
 
 info_box "Extracting firmware"
 echo "  Extracting [${magenta}${firmware}${default}] firmware to [${magenta}${PWD}/firmware/${firmware}${default}]"
-# tar -xf firmware/8.2.5_adb_enabled.tar.xz -C ./firmware/8.2.5_adb_enabled
+tar -xf firmware/$firmware -C ./firmware/$firmware_dir
 
 info_box "Updating firmware extensions"
 echo "  Updating extensions in [${magenta}${PWD}/firmware/${firmware}${default}]"
-if [ -f ./firmware/${firmware}/data.dump ]; then mv ./firmware/${firmware}/data.dump ./firmware/${firmware}/data.ext4; fi
-if [ -f ./firmware/${firmware}/settings.dump ]; then mv ./firmware/${firmware}/settings.dump ./firmware/${firmware}/settings.ext4; fi
-if [ -f ./firmware/${firmware}/system_a.dump ]; then mv ./firmware/${firmware}/system_a.dump ./firmware/${firmware}/system_a.ext2; fi
-if [ -f ./firmware/${firmware}/system_b.dump ]; then mv ./firmware/${firmware}/system_b.dump ./firmware/${firmware}/system_b.ext2; fi
+if [ -f ./firmware/$firmware_dir/data.dump ]; then mv ./firmware/$firmware_dir/data.dump ./firmware/$firmware_dir/data.ext4; fi
+if [ -f ./firmware/$firmware_dir/settings.dump ]; then mv ./firmware/$firmware_dir/settings.dump ./firmware/$firmware_dir/settings.ext4; fi
+if [ -f ./firmware/$firmware_dir/system_a.dump ]; then mv ./firmware/$firmware_dir/system_a.dump ./firmware/$firmware_dir/system_a.ext2; fi
+if [ -f ./firmware/$firmware_dir/system_b.dump ]; then mv ./firmware/$firmware_dir/system_b.dump ./firmware/$firmware_dir/system_b.ext2; fi
