@@ -20,6 +20,8 @@ pip3 install git+https://github.com/superna9999/pyamlboot
 ```
 
 ## Clone this project
+> Make sure you have the `--recurse-submodules` at the end so you get the
+> dependant submodules.
 ```
 git clone git@github.com:peledies/carthing-dev-template.git --recurse-submodules
 ```
