@@ -48,19 +48,27 @@ python3 superbird_tool.py --restore_device ../8.2.5_adb_enabled
 > go to sleep durring this process
 
 ## ADB
-https://www.xda-developers.com/install-adb-windows-macos-linux/
+ADB is included in this repository. The following commands work from the project root
 
+```
 ./platform-tools/adb devices
+```
+```
 ./platform-tools/adb shell mount -o remount,rw /
+```
+```
 ./platform-tools/adb shell
-
+```
 
 ## Web App
 Get the web app so you can explore it locally
 
 ### Pull
+```
 ./platform-tools/adb pull /usr/share/qt-superbird-app/webapp webapp
+```
 
 ### Push
+```
 ./platform-tools/adb push webapp /usr/share/qt-superbird-app/webapp
-
+```
