@@ -3,7 +3,7 @@
 ![Spotify AnyThing Splash](https://github.com/peledies/spotify-any-thing/blob/main/webapp/images/appstart.png?raw=true)
 
 
-This is meant to expedite the development process and was specifically written to be run on Mac. I dont see any reason why it wont run on linux as well. If you get it to run, please PM me with your harware specs and ill update the compatibility list.
+This is meant to expedite the development process and was specifically written to be run on Mac. I dont see any reason why it wont run on linux as well. If you get it to run, please PM me or create a PR with your harware specs and I'll update the compatibility list.
 
 This has been tested and confirmed to work on the following hardware:
 - 2018 Intel Mac Mini macOs 14.5
@@ -41,8 +41,8 @@ Use the provided helper script to get a new patched firmware.
 ```
 
 
-## The hack
-
+## The Hack
+You only have to do this once per device. After you have done this you can jump straight to using the `ct` commands.
 - hold buttons 1 & 4
 - plug in CarThing
 
@@ -58,6 +58,16 @@ Use the provided helper script to get a new patched firmware.
 ADB is included in this repository and can be used on its own to interact with the CarThing. However the included `ct` script will do pretty much everything you need with fewer keystrokes
 
 The following commands work from the project root:
+
+Create a local backup in the `backup` directory from the contents of the CarThings webapp
+```
+./ct --backup
+```
+
+Serve the webapp directory on port `8000`. You can go to `http://localhost:8000` to preview your local webapp before pushing. (ctl-c to exit)
+```
+./ct --serve
+```
 
 Pull the contents of the webapp directory from the CarThing to your current working directory
 ```
