@@ -47,34 +47,27 @@ Use the provided helper script to get a new patched firmware.
 ```
 
 
-## ADB
-ADB is included in this repository. The following commands work from the project root
+## The CT script
+ADB is included in this repository and can be used on its own to interact with the CarThing. However the included `ct` script will do pretty much everything you need with fewer keystrokes
 
-```
-./platform-tools/adb devices
-```
+The following commands work from the project root
 
+Pull the contents of the webapp directory from the CarThing to your current working directory
 ```
-./platform-tools/adb shell mount -o remount,rw /
-```
-
-```
-./platform-tools/adb shell
+./ct --pull
 ```
 
+Push the contents of your `./webapp` directory to the CarThing
 ```
-./platform-tools/adb shell reboot
-```
-
-## Web App
-Get the web app so you can explore it locally
-
-### Pull
-```
-./platform-tools/adb pull /usr/share/qt-superbird-app/webapp ./
+./ct --push
 ```
 
-### Push
+Open a shell to the CarThing
 ```
-./platform-tools/adb push ./webapp /usr/share/qt-superbird-app && ./platform-tools/adb shell reboot
+./ct --shell
+```
+
+Reboot the CarThing
+```
+./ct --reboot
 ```

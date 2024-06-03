@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+red=$(tput setaf 1)
+gold=$(tput setaf 3)
+blue=$(tput setaf 4)
+magenta=$(tput setaf 5)
+cyan=$(tput setaf 6)
+default=$(tput sgr0)
+
+remote_superbird_path=/usr/share/qt-superbird-app
+remote_webapp_path=$remote_superbird_path/webapp
+local_webapp_path=./webapp
+
+function mount() {
+  ./platform-tools/adb shell mount -o remount,rw /
+}
+
+function shell() {
+  ./platform-tools/adb shell
+}
+
+function reboot() {
+  echo "${gold}Rebooting device...${default}"
+  ./platform-tools/adb shell reboot
+}
+
+function pull() {
+  ./platform-tools/adb pull $remote_webapp_path ./
+}
+
+function push() {
+  ./platform-tools/adb push $local_webapp_path $remote_superbird_path
+}
+
+
+ATTACHED=$(./platform-tools/adb devices -l | grep 'spotify-car-thing')
+
+if [ -z "$ATTACHED" ]; then
+  echo "${red}No device attached. Exiting.${default}"
+  exit 1
+fi
+
+if [ "$1" = "--shell" ]; then
+  mount
+  shell
+elif [ "$1" = "--pull" ]; then
+  mount
+  pull
+elif [ "$1" = "--push" ]; then
+  mount
+  push
+  echo "${gold}A device reboot is required for the changes to go into effect."
+  read -p "${gold}Do you want to reboot the device? (y/n):${default} " answer
+  if [[ $answer == "y" || $answer == "Y" ]]; then
+    reboot
+  fi
+elif [ "$1" = "--reboot" ]; then
+  reboot
+else
+  echo "${red}Invalid argument. Exiting.${default}"
+  exit 1
+fi
+
+
