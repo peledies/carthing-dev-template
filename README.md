@@ -18,7 +18,6 @@ This has been tested and confirmed to work on the following hardware:
 brew install libusb
 ```
 
-TODO: do this in a virtual environment
 ```
 pip3 install git+https://github.com/superna9999/pyamlboot
 ```
