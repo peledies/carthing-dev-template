@@ -1,0 +1,3 @@
+[submodule "superbird-tool"]
+	path = superbird-tool
+	url = git@github.com:bishopdynamics/superbird-tool.git

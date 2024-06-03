@@ -1,13 +1,17 @@
-# Car thing Hack
+# Spotify Car Thing Development on a Mac
 
 ## Prerequsites
 brew install libusb
 
+
+### Clone this project
+```
+git clone git@github.com:peledies/carthing-dev-template.git --recurse-submodules
+```
+
+TODO: do this in a virtual environment
 pip3 install git+https://github.com/superna9999/pyamlboot
 
-cd ~/projects/CarThing
-
-git clone git@github.com:bishopdynamics/superbird-tool.git
 
 ## Get a Firmware
 https://mega.nz/folder/NxNXQCaT#-n1zkoXsJuw-5rQ-ZYzRJw/folder/5kECGT5C
@@ -18,10 +22,10 @@ https://mega.nz/folder/NxNXQCaT#-n1zkoXsJuw-5rQ-ZYzRJw/folder/5kECGT5C
 
 cd 8.2.5_adb_enabled
 
-mv data.dump data.ext4
-mv settings.dump settings.ext4
-mv system_a.dump system_a.ext2
-mv system_b.dump system_b.ext2
+mv data.dump data.ext4 \
+  && mv settings.dump settings.ext4 \
+  && mv system_a.dump system_a.ext2 \
+  && mv system_b.dump system_b.ext2
 
 ## The hack
 
@@ -29,13 +33,13 @@ mv system_b.dump system_b.ext2
 - plug in CarThing
 
 python3 superbird-tool/superbird_tool.py --find_device
-python superbird_tool.py --restore_device ../8.2.5_adb_enabled
+python3 superbird_tool.py --restore_device ../8.2.5_adb_enabled
 
 
 ## ADB
 https://www.xda-developers.com/install-adb-windows-macos-linux/
 
-./platform-tools/adb
+./platform-tools/adb devices
 ./platform-tools/adb shell mount -o remount,rw /
 ./platform-tools/adb shell
 
