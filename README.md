@@ -1,4 +1,8 @@
-# Spotify Car Thing Development on a Mac
+# Spotify Car Thing Development
+This is meant to expedite the development process and was specifically written to be run on Mac. I dont see any reason why it wont run on linux as well. If you get it to run, please PM me with your harware specs and ill update the compatibility list.
+
+This has been tested and confirmed to work on the following hardware:
+- 2018 Intel Mac Mini macOs 14.5
 
 ## Summary
 
@@ -50,7 +54,7 @@ Use the provided helper script to get a new patched firmware.
 ## The CT script
 ADB is included in this repository and can be used on its own to interact with the CarThing. However the included `ct` script will do pretty much everything you need with fewer keystrokes
 
-The following commands work from the project root
+The following commands work from the project root:
 
 Pull the contents of the webapp directory from the CarThing to your current working directory
 ```
