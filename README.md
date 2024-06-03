@@ -1,5 +1,14 @@
 # Spotify Car Thing Development on a Mac
 
+## Summary
+
+- Install prerequsites
+- Clone this repository
+- Download a new firmware
+- Install the new firmware
+- Modify the webapp
+- Profit
+
 ## Prerequsites
 ```
 brew install libusb
@@ -53,11 +62,17 @@ ADB is included in this repository. The following commands work from the project
 ```
 ./platform-tools/adb devices
 ```
+
 ```
 ./platform-tools/adb shell mount -o remount,rw /
 ```
+
 ```
 ./platform-tools/adb shell
+```
+
+```
+./platform-tools/adb shell reboot
 ```
 
 ## Web App
@@ -65,10 +80,10 @@ Get the web app so you can explore it locally
 
 ### Pull
 ```
-./platform-tools/adb pull /usr/share/qt-superbird-app/webapp webapp
+./platform-tools/adb pull /usr/share/qt-superbird-app/webapp ./
 ```
 
 ### Push
 ```
-./platform-tools/adb push webapp /usr/share/qt-superbird-app/webapp
+./platform-tools/adb push ./webapp /usr/share/qt-superbird-app && ./platform-tools/adb shell reboot
 ```
