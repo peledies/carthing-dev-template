@@ -43,6 +43,9 @@ python3 superbird-tool/superbird_tool.py --find_device
 ```
 python3 superbird_tool.py --restore_device ../8.2.5_adb_enabled
 ```
+> NOTE: This may fail several times but it will eventualy make it all the way
+> through the process. It took 4 tries for me. ProTip: dont let your computer
+> go to sleep durring this process
 
 ## ADB
 https://www.xda-developers.com/install-adb-windows-macos-linux/
