@@ -1,4 +1,8 @@
-# Spotify Car Thing Development
+# Spotify AnyThing (For CarThing)
+
+![Spotify AnyThing Splash](https://github.com/peledies/carthing-dev-template/blob/main/webapp/images/appstart.png?raw=true)
+
+
 This is meant to expedite the development process and was specifically written to be run on Mac. I dont see any reason why it wont run on linux as well. If you get it to run, please PM me with your harware specs and ill update the compatibility list.
 
 This has been tested and confirmed to work on the following hardware:
