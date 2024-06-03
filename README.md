@@ -25,20 +25,11 @@ pip3 install git+https://github.com/superna9999/pyamlboot
 ```
 
 ## Get a Firmware
-https://mega.nz/folder/NxNXQCaT#-n1zkoXsJuw-5rQ-ZYzRJw/folder/5kECGT5C
-
-8.2.5_adb_enabled
-
-- extract it
-
-cd 8.2.5_adb_enabled
-
+Use the provided helper script to get a new patched firmware.
 ```
-mv data.dump data.ext4 \
-  && mv settings.dump settings.ext4 \
-  && mv system_a.dump system_a.ext2 \
-  && mv system_b.dump system_b.ext2
+./prepare_firmware.sh
 ```
+
 
 ## The hack
 
