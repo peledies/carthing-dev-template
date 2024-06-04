@@ -26,7 +26,7 @@ function reboot() {
   ./platform-tools/adb shell reboot
 }
 
-function backup() {
+function backup_local() {
   if [ ! -d "./backup" ]; then
     mkdir ./backup
   fi
@@ -47,6 +47,14 @@ function serve() {
   python3 -m http.server 8000 --directory ./webapp
 }
 
+function backup_webapp_on_device() {
+  ./platform-tools/adb shell "cd $remote_superbird_path && [ -f $remote_superbird_path/webapp.bak.tar.xz ] || echo 'Creating backup on device'" # && tar caf ./webapp.bak.tar.xz --directory=webapp.bak ."
+}
+
+function restore_webapp_on_device() {
+  ./platform-tools/adb shell "cd $remote_superbird_path && [ -f $remote_superbird_path/webapp.bak.tar.xz ] && echo 'Restoring backup on device'  && tar xaf $remote_superbird_path/webapp.bak.tar.xz || echo 'backup not present on device'"
+}
+
 function device_check() {
   if [ -z "$ATTACHED" ]; then
     echo "${red}No device attached. Exiting.${default}"
@@ -58,18 +66,21 @@ if [ "$1" = "--shell" ]; then
   device_check
   mount
   shell
+elif [ "$1" = "--restore" ]; then
+  restore_webapp_on_device
 elif [ "$1" = "--serve" ]; then
   serve
 elif [ "$1" = "--backup" ]; then
   device_check
-  backup
+  backup_local
 elif [ "$1" = "--pull" ]; then
   device_check
   mount
   pull
 elif [ "$1" = "--push" ]; then
   device_check
-  backup
+  backup_webapp_on_device
+  backup_local
   mount
   push
   echo "${gold}A device reboot is required for the changes to go into effect."
