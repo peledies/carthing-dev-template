@@ -48,11 +48,21 @@ function serve() {
 }
 
 function backup_webapp_on_device() {
-  ./platform-tools/adb shell "cd $remote_superbird_path && [ -f $remote_superbird_path/webapp.bak.tar.xz ] || echo 'Creating backup on device'" # && tar caf ./webapp.bak.tar.xz --directory=webapp.bak ."
+  ./platform-tools/adb shell "cd $remote_superbird_path \
+    && [ -f $remote_superbird_path/webapp.bak.tar.xz ] \
+    && echo 'Backup already present on device' \
+    || echo 'Creating backup on device' \
+    && tar caf ./webapp.bak.tar.xz --directory=webapp ."
 }
 
 function restore_webapp_on_device() {
-  ./platform-tools/adb shell "cd $remote_superbird_path && [ -f $remote_superbird_path/webapp.bak.tar.xz ] && echo 'Restoring backup on device'  && tar xaf $remote_superbird_path/webapp.bak.tar.xz || echo 'backup not present on device'"
+  ./platform-tools/adb shell "cd $remote_superbird_path \
+    && [ -f $remote_superbird_path/webapp.bak.tar.xz ] \
+    && echo 'Restoring backup on device' \
+    && rm -rf $remote_superbird_path/webapp \
+    && mkdir $remote_superbird_path/webapp \
+    && tar xafm $remote_superbird_path/webapp.bak.tar.xz -C $remote_superbird_path/webapp \
+    || echo 'backup not present on device'"
 }
 
 function device_check() {
@@ -65,9 +75,11 @@ function device_check() {
 if [ "$1" = "--shell" ]; then
   device_check
   mount
+  backup_webapp_on_device
   shell
 elif [ "$1" = "--restore" ]; then
   restore_webapp_on_device
+  reboot
 elif [ "$1" = "--serve" ]; then
   serve
 elif [ "$1" = "--backup" ]; then
