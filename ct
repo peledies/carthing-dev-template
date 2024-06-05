@@ -51,8 +51,8 @@ function backup_webapp_on_device() {
   ./platform-tools/adb shell "cd $remote_superbird_path \
     && [ -f $remote_superbird_path/webapp.bak.tar.xz ] \
     && echo 'Backup already present on device' \
-    || echo 'Creating backup on device' \
-    && tar caf ./webapp.bak.tar.xz --directory=webapp ."
+    || (echo 'Creating backup on device' \
+    && tar caf ./webapp.bak.tar.xz --directory=webapp .)"
 }
 
 function restore_webapp_on_device() {
