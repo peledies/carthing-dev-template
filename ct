@@ -26,6 +26,11 @@ function reboot() {
   ./platform-tools/adb shell reboot
 }
 
+function restart_chromium() {
+  echo "${gold}Restarting Chromium...${default}"
+  ./platform-tools/adb shell supervisorctl restart chromium
+}
+
 function backup_local() {
   if [ ! -d "./backup" ]; then
     mkdir ./backup
@@ -79,7 +84,7 @@ if [ "$1" = "--shell" ]; then
   shell
 elif [ "$1" = "--restore" ]; then
   restore_webapp_on_device
-  reboot
+  restart_chromium
 elif [ "$1" = "--serve" ]; then
   serve
 elif [ "$1" = "--backup" ]; then
@@ -95,11 +100,7 @@ elif [ "$1" = "--push" ]; then
   backup_local
   mount
   push
-  echo "${gold}A device reboot is required for the changes to go into effect."
-  read -p "${gold}Do you want to reboot the device? (y/n):${default} " answer
-  if [[ $answer == "y" || $answer == "Y" ]]; then
-    reboot
-  fi
+  restart_chromium
 elif [ "$1" = "--reboot" ]; then
   device_check
   reboot
